@@ -1,4 +1,7 @@
+
 import {Component} from '@angular/core';
+import {CarPart} from './car-part';
+import {CARPARTS} from './mocks';
 
 @Component({
   selector: 'car-parts',
@@ -7,22 +10,10 @@ import {Component} from '@angular/core';
 })
 
 export class CarPartsComponent{
-  carParts = [
-    {
-      "id":1,
-      "name":"Super Tires",
-      "description":"These tires are the very best",
-      "inStock":5,
-      "price":4.99
-    },
-    {
-      "id":2,
-      "name":"Reinforced Shocks",
-      "description":"Shocks made from kryptonite",
-      "inStock":7,
-      "price":9.99
-    }
-  ];
+  carParts: CarPart[] ;
+  constructor() {
+    this.carParts = CARPARTS;
+  }
   totalCarParts() {
     let sum = 0;
     for (let carPart of this.carParts) {
