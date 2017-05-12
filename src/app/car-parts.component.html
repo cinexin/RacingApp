@@ -1,10 +1,23 @@
 <p>There are {{totalCarParts()}} total parts in stock.</p>
 <ul>
-  <li *ngFor="let carPart of carParts">
-    <h2>{{carPart.name | uppercase}}</h2>
-    <p class="description">{{carPart.description}}</p>
-    <p class="price">{{carPart.price | currency: 'EUR':true}}</p>
-    <p *ngIf="carPart.inStock > 0">{{carPart.inStock}} in Stock</p>
-    <p *ngIf="carPart.inStock === 0">Out of stock</p>
-  </li>
+  <table class="product-info">
+    <tr  *ngFor="let carPart of carParts" >
+      <td [class.featured]="carPart.featured">
+        <div class="photo">
+          <img [src]="carPart.image" height="70" width="70"/>
+          <!-- The square brackets tell Angular to set this DOM element
+          property to our component property -->
+        </div>
+      </td>
+      <td>
+        <h2 [class.featured]="carPart.featured">{{carPart.name | uppercase}}</h2>
+      </td>
+      <td>
+        <p class="description">{{carPart.description}}</p>
+        <p class="price">{{carPart.price | currency: 'EUR':true}}</p>
+        <p *ngIf="carPart.inStock > 0">{{carPart.inStock}} in Stock</p>
+        <p *ngIf="carPart.inStock === 0">Out of stock</p>
+      </td>
+    </tr>
+  </table>
 </ul>

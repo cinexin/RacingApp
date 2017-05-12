@@ -4,3 +4,6 @@ h1,h2 {
 p {
   font-size: small;
 }
+.isRacing {
+  background-color: red;
+}

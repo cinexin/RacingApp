@@ -5,3 +5,8 @@
 .price {
   font-weight:bold;
 }
+
+.featured {
+  background: #e2df88;
+  border-image-slice: 1;
+}
