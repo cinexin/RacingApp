@@ -6,16 +6,19 @@ import {BrowserModule} from '@angular/platform-browser';
     template: `<h1>{{heading}}</h1>
     <ul>
       <li *ngFor="let race of races">
-        <h2>{{race.name}}</h2>
-        <p>{{race.date}}</p>
+        <h2>{{race.name}} {{race.entryFee | currency:'USD':true}}</h2>
+        <p>{{race.date | date:'MMM d, y, h:mm a'}}</p>
         <p>{{race.about}}</p>
         <button *ngIf="race.isRacing === false">Enter race</button>
         <h3 *ngIf="race.isRacing === true">Already racing</h3>
       </li>
-    </ul>`
+    </ul>
+    <h2>Total cost: {{totalCost() | currency:'USD':true}}</h2>
+    `
 })
 export class AppRacingComponent {
   heading = 'Ultra Racing Schedule';
+
   races = [{
     "id": 1,
     "name": "Daytona Thunderdome",
@@ -38,4 +41,14 @@ export class AppRacingComponent {
     "entryFee": 4300,
     "isRacing": false
   }];
+
+  totalCost() {
+    let cost = 0;
+    for (let race of this.races) {
+      if (race.isRacing === true) {
+          cost += race.entryFee;
+      }
+    }
+    return cost;
+  }
 }
