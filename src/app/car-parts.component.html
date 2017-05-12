@@ -17,7 +17,10 @@
         <p class="price">{{carPart.price | currency: 'EUR':true}}</p>
         <div class="select-quantity">
             <button class="decrease" (click)="downQuantity(carPart)">-</button>
-            {{carPart.quantity}}
+            <!--<input class="number" type="text" size="2"  [value]="carPart.quantity"
+              (input)="carPart.quantity=$event.target.value" />-->
+              <!-- 2 way-binding: by buttons or typing the value directly in the text box -->
+            <input class="number" type="text" size="2" [(ngModel)] = "carPart.quantity" />              
             <button class="increase" (click)="upQuantity(carPart)">+</button>
         </div>
         <p *ngIf="carPart.inStock > 0">{{carPart.inStock}} in Stock</p>
