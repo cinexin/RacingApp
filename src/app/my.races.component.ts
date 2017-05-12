@@ -11,6 +11,7 @@ import {MYRACES} from './mocks';
 
 export class MyRacesComponent {
   races: MyRace[] ;
+  cash = 10000;
   constructor() {
     this.races = MYRACES;
   }
@@ -22,5 +23,21 @@ export class MyRacesComponent {
       }
     }
     return cost;
+  }
+
+  cancelRace(race:MyRace) {
+    race.isRacing = false;
+  }
+
+  cashLeft() {
+    return this.cash - this.totalCost();
+  }
+
+  enterRace(race:MyRace) {
+    if (this.cashLeft() > race.entryFee) {
+      race.isRacing = true;
+    } else {
+      alert("You don't have enough cash");
+    }
   }
 }

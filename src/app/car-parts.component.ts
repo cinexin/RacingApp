@@ -22,4 +22,16 @@ export class CarPartsComponent{
     return sum;
   }
 
+  upQuantity(carPart:CarPart) {
+    if (carPart.quantity < carPart.inStock) {
+      carPart.quantity++;
+    }
+  }
+
+  downQuantity(carPart:CarPart) {
+    if (carPart.quantity>0) {
+      carPart.quantity--;
+    }
+  }
+
 }
