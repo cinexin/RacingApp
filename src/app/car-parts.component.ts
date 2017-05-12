@@ -2,6 +2,8 @@
 import {Component} from '@angular/core';
 import {CarPart} from './car-part';
 import {CARPARTS} from './mocks';
+import {RacingDataService} from './racing-data.service';
+
 
 @Component({
   selector: 'car-parts',
@@ -11,8 +13,12 @@ import {CARPARTS} from './mocks';
 
 export class CarPartsComponent{
   carParts: CarPart[] ;
-  constructor() {
-    this.carParts = CARPARTS;
+  /* that's how we inject dependencies */
+  /* private keyword means it will automatically defines
+  Component properties based on parameters.
+  In this case: racingDataService of class RacingDataService */
+  constructor(private racingDataService: RacingDataService) {
+    this.carParts = racingDataService.getCarParts();
   }
   totalCarParts() {
     let sum = 0;

@@ -2,6 +2,7 @@ import {NgModule, Component } from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {MyRace} from './my.race';
 import {MYRACES} from './mocks';
+import {RaceService} from './race.service';
 
 @Component({
   selector: 'my-races',
@@ -12,8 +13,9 @@ import {MYRACES} from './mocks';
 export class MyRacesComponent {
   races: MyRace[] ;
   cash = 10000;
-  constructor() {
+  constructor(private raceService:RaceService) {
     this.races = MYRACES;
+    this.races = raceService.getRaces();
   }
   totalCost() {
     let cost = 0;
