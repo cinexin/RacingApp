@@ -1,4 +1,5 @@
 import { NgModule }      from '@angular/core';
+import {HttpModule} from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 
@@ -10,7 +11,7 @@ import {RacingDataService} from './racing-data.service';
 import {RaceService} from './race.service';
 
 @NgModule({
-  imports:      [ BrowserModule, FormsModule ],
+  imports:      [ BrowserModule, FormsModule, HttpModule ],
   declarations: [ AppComponent, AppRacingComponent, CarPartsComponent, MyRacesComponent ],
   bootstrap:    [ AppComponent, AppRacingComponent, CarPartsComponent, MyRacesComponent ],
   providers: [RacingDataService, RaceService]

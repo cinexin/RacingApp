@@ -14,14 +14,17 @@ export class MyRacesComponent {
   races: MyRace[] ;
   cash = 10000;
   constructor(private raceService:RaceService) {
-    this.races = MYRACES;
-    this.races = raceService.getRaces();
+    // this.races = MYRACES;
+    this.raceService.getRaces().subscribe(races => this.races = races);
   }
+
   totalCost() {
     let cost = 0;
-    for (let race of this.races) {
-      if (race.isRacing === true) {
-          cost += race.entryFee;
+    if (Array.isArray(this.races)) {
+      for (let race of this.races) {
+        if (race.isRacing === true) {
+            cost += race.entryFee;
+        }
       }
     }
     return cost;

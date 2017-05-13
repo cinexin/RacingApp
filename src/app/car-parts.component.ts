@@ -18,14 +18,16 @@ export class CarPartsComponent{
   Component properties based on parameters.
   In this case: racingDataService of class RacingDataService */
   constructor(private racingDataService: RacingDataService) {
-    this.carParts = racingDataService.getCarParts();
+    racingDataService.getCarParts().subscribe(carParts => this.carParts = carParts);
   }
   totalCarParts() {
     let sum = 0;
-    for (let carPart of this.carParts) {
-      sum+=carPart.inStock;
+    if (Array.isArray(this.carParts)) {
+        for (let carPart of this.carParts) {
+          sum+=carPart.inStock;
+        }
+        return sum;
     }
-    return sum;
   }
 
   upQuantity(carPart:CarPart) {
